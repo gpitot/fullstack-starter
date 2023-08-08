@@ -1,9 +1,0 @@
-title: "QueryWithFirstName"
-type: object
-description: A query with first name
-parameters:
-  in: query
-  schema: { type: string }
-  name: firstname
-  required: false
-  description: The firstname of the user

@@ -3,10 +3,10 @@ info:
   title: "Interfaces"
   version: "1.0.0"
 servers:
-  - url: https://{hostname}/api
+  - url: http://{hostname}/api/v1
     variables:
       hostname:
-        default: app.com
+        default: localhost:3000
 tags:
   - name: demo
     description: |
@@ -19,7 +19,11 @@ paths:
       tags: [demo]
       summary: Get demo api
       parameters:
-        - $ref: "#components/parameters/queryWithFirstname"
+        - in: query
+          schema: { type: string }
+          name: firstname
+          required: false
+          description: The firstname of the user
       responses:
         "200":
           description: "successful response"
@@ -38,8 +42,6 @@ components:
       name: id
       required: true
       description: The id to look up
-    queryWithFirstname:
-      $ref: "schemas/parameters/query_with_first_name.yml"
     Authorization:
       in: header
       name: X-Auth

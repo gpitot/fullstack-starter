@@ -4,10 +4,14 @@ import { DemoModel } from "interfaces";
 
 const router = express.Router();
 
-router.get<unknown, DemoModel>("/demo", (req, res) => {
-  res.json({
-    message: "API - 👋🌎🌍🌏",
-  });
-});
+router.get<unknown, DemoModel, unknown, { firstname?: string }>(
+  "/demo",
+  (req, res) => {
+    const { firstname } = req.query;
+    res.json({
+      message: `👋 ${firstname ?? ""} 🌎🌍🌏`,
+    });
+  }
+);
 
 export default router;
