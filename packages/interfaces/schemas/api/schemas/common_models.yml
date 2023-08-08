@@ -1,0 +1,77 @@
+schemas:
+  ErrorCode:
+    $ref: "error_code.yml"
+
+  ErrorResponseModel:
+    description: The response message for errors. Contains details about the error.
+    type: object
+    required: ["error"]
+    properties:
+      error:
+        $ref: "#/schemas/ErrorModel"
+
+  ErrorModel:
+    title: Error
+    description: Shared error model
+    type: object
+    required: ["message", "code"]
+    properties:
+      code: { $ref: "#/schemas/ErrorCode" }
+      message: { type: string, description: A human readable error message }
+
+responses:
+  ErrorInternal:
+    description: "An internal error occurred"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+
+  ErrorUnauthenticated:
+    description: "Unauthenticated access to the specified resource. Check that the credentials are correct, have been presented correctly, are suitable for the specified endpoint, and have not expired or been revoked"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorUnauthorised:
+    description: "Unauthorised access to specified resource"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorNotFound:
+    description: "The specified resource does not exist"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorBadRequest:
+    description: "A request with invalid input was provided."
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorJourneyPaused:
+    description: "Journey has been paused"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorSystemUnderMaintenance:
+    description: "System is under maintenance"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorConflict:
+    description: "An attempt to create a resource which already exists with the same ID"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"
+  ErrorHIP:
+    description: "Surface HIP Error message to client"
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponseModel"

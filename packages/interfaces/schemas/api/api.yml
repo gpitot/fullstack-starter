@@ -1,0 +1,71 @@
+openapi: "3.0.0"
+info:
+  title: "Interfaces"
+  version: "1.0.0"
+servers:
+  - url: https://{hostname}/api
+    variables:
+      hostname:
+        default: app.com
+tags:
+  - name: demo
+    description: |
+      The series of APIs for demo use
+
+paths:
+  /demo:
+    get:
+      operationId: GetDemo
+      tags: [demo]
+      summary: Get demo api
+      parameters:
+        - $ref: "#components/parameters/queryWithFirstname"
+      responses:
+        "200":
+          description: "successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDemoResponse"
+        "500":
+          $ref: "#/components/responses/ErrorInternal"
+
+components:
+  parameters:
+    pathWithID:
+      in: path
+      schema: { type: number }
+      name: id
+      required: true
+      description: The id to look up
+    queryWithFirstname:
+      $ref: "schemas/parameters/query_with_first_name.yml"
+    Authorization:
+      in: header
+      name: X-Auth
+      schema:
+        type: string
+      required: true
+
+  schemas:
+    DemoModel:
+      $ref: "schemas/demo/demo.yml"
+
+    GetDemoResponse:
+      $ref: "#/components/schemas/DemoModel"
+
+  responses:
+    # API Gateway does not support response definitions here for '200' responses
+    # It ignores error (non-200) responses
+    ErrorInternal:
+      $ref: "schemas/common_models.yml#/responses/ErrorInternal"
+    ErrorUnauthenticated:
+      $ref: "schemas/common_models.yml#/responses/ErrorUnauthenticated"
+    ErrorUnauthorised:
+      $ref: "schemas/common_models.yml#/responses/ErrorUnauthorised"
+    ErrorNotFound:
+      $ref: "schemas/common_models.yml#/responses/ErrorNotFound"
+    ErrorBadRequest:
+      $ref: "schemas/common_models.yml#/responses/ErrorBadRequest"
+    ErrorConflict:
+      $ref: "schemas/common_models.yml#/responses/ErrorConflict"

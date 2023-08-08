@@ -1,0 +1,21 @@
+title: ErrorCode
+description: |
+  Honey-specific error codes. More detailed explanation of these codes
+  can be found in adjunct documentation describing their usage.
+
+type: "string"
+enum:
+  - unknown
+  - network
+  - internal
+  - unauthenticated
+  - unauthorized
+  - bad_request
+  - not_found
+  - internal.bad_gateway
+  - internal.unavailable
+  - internal.gateway_timeout
+  - conflict
+  - bad_gateway
+  - unsupported_media_type
+  - too_many_requests

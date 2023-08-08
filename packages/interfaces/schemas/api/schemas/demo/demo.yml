@@ -1,0 +1,8 @@
+title: "DemoModel"
+type: object
+description: An demo response
+required: [message]
+properties:
+  message:
+    description: Welcome message
+    type: string
