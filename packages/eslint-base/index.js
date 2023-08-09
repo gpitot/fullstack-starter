@@ -3,9 +3,6 @@ module.exports = {
   rules: {},
   parserOptions: {
     parser: "@typescript-eslint/parser",
-    babelOptions: {
-      presets: [],
-    },
     extends: [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",

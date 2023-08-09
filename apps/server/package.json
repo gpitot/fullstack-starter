@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsup src",
-    "lint": "eslint --fix src",
+    "lint": "eslint src",
     "test": "jest",
     "typecheck": "tsc --noEmit"
   },
@@ -25,14 +25,14 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.2.5",
     "@types/supertest": "^2.0.12",
-    "eslint-config-custom": "workspace:*",
+    "@packages/eslint": "workspace:*",
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
-    "tsconfig": "workspace:*",
+    "@packages/tsconfig": "workspace:*",
     "tsup": "^7.2.0",
     "typescript": "^5.0.2",
-    "interfaces": "workspace:*"
+    "@packages/interfaces": "workspace:*"
   }
 }

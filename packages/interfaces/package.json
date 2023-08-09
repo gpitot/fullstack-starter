@@ -1,5 +1,5 @@
 {
-  "name": "interfaces",
+  "name": "@packages/interfaces",
   "version": "1.0.0",
   "description": "",
   "main": "generated/index.ts",

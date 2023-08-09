@@ -1,12 +1,13 @@
 {
-  "name": "eslint-config-custom",
+  "name": "@packages/eslint-web",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "eslint-config-prettier": "^8.3.0",
+    "eslint-config-turbo": "^1.9.3",
     "eslint-plugin-react": "7.28.0",
-    "eslint-config-turbo": "^1.9.3"
+    "eslint-plugin-tailwindcss": "^3.13.0"
   },
   "publishConfig": {
     "access": "public"

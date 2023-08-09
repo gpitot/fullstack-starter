@@ -1,6 +1,6 @@
 import express from "express";
 
-import { DemoModel } from "interfaces";
+import { DemoModel } from "@packages/interfaces";
 
 const router = express.Router();
 
