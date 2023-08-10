@@ -3,15 +3,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
     "eslint": "^7.32.0",
-    "@packages/eslint": "workspace:*",
-    "@packages/eslint-web": "workspace:*",
-    "prettier": "^2.5.1",
+    "eslint-config-base": "workspace:*",
+    "eslint-config-web": "workspace:*",
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.10",
