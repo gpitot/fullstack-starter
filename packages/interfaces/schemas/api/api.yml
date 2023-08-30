@@ -6,7 +6,7 @@ servers:
   - url: http://{hostname}/api/v1
     variables:
       hostname:
-        default: localhost:3000
+        default: localhost:8080
 tags:
   - name: demo
     description: |

@@ -127,6 +127,9 @@ importers:
       nodemon:
         specifier: ^2.0.22
         version: 2.0.22
+      prisma:
+        specifier: ^5.2.0
+        version: 5.2.0
       supertest:
         specifier: ^6.3.3
         version: 6.3.3
@@ -1183,6 +1186,11 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.1
     dev: false
+
+  /@prisma/engines@5.2.0:
+    resolution: {integrity: sha512-dT7FOLUCdZmq+AunLqB1Iz+ZH/IIS1Fz2THmKZQ6aFONrQD/BQ5ecJ7g2wGS2OgyUFf4OaLam6/bxmgdOBDqig==}
+    requiresBuild: true
+    dev: true
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -5132,6 +5140,15 @@ packages:
       '@jest/schemas': 29.6.0
       ansi-styles: 5.2.0
       react-is: 18.2.0
+    dev: true
+
+  /prisma@5.2.0:
+    resolution: {integrity: sha512-FfFlpjVCkZwrqxDnP4smlNYSH1so+CbfjgdpioFzGGqlQAEm6VHAYSzV7jJgC3ebtY9dNOhDMS2+4/1DDSM7bQ==}
+    engines: {node: '>=16.13'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 5.2.0
     dev: true
 
   /progress@2.0.3:

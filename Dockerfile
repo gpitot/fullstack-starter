@@ -25,8 +25,8 @@ RUN npm --global install pnpm@${PNPM_VERSION}
 
 # Install node modules
 COPY pnpm-lock.yaml ./
-RUN pnpm fetch --prod
-RUN pnpm install --offline -r --prod
+RUN pnpm fetch 
+RUN pnpm install --offline -r
 
 # Copy application code
 COPY --link . .
