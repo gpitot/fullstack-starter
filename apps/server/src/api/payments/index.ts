@@ -1,11 +1,38 @@
 import express from "express";
 import Stripe from "stripe";
-import { GetPaymentResponse } from "@packages/interfaces";
+import { GetPaymentResponse, PaymentStatus } from "@packages/interfaces";
 import stripe from "../../services/payments";
 import prisma from "../../db";
 
 const router = express.Router();
 const endpointSecret = "whsec_9994189d590090fa676f7b28c2a15eef908f997dde97b0296026d1b6645a9941";
+
+const getPaymentDetails = (event: Stripe.Event) => {
+  const typedEvent = event as unknown as {
+    type: string;
+    payment_intent: string;
+    receipt_url: string;
+  };
+  let status: PaymentStatus;
+  switch (typedEvent.type) {
+    case "charge.succeeded": {
+      status = "PAYMENT_COMPLETE";
+      break;
+    }
+    case "charge.failed": {
+      status = "PAYMENT_FAILED";
+      break;
+    }
+    default: {
+      return null;
+    }
+  }
+  return {
+    status,
+    paymentIntentId: typedEvent.payment_intent,
+    receipt_url: typedEvent.receipt_url,
+  };
+};
 
 export const webhookHandler = async (req: express.Request, res: express.Response) => {
   let webhookEvent: Stripe.Event;
@@ -19,27 +46,22 @@ export const webhookHandler = async (req: express.Request, res: express.Response
       return res.sendStatus(400);
     }
 
-    switch (webhookEvent.type) {
-      case "charge.succeeded": {
-        const success = webhookEvent.data.object as { payment_intent: string; receipt_url: string };
-        console.log("PaymentIntent was successful!", success);
-        await prisma.payments.updateMany({
-          where: {
-            transaction_id: success.payment_intent,
-          },
-          data: {
-            payment_status: "PAYMENT_COMPLETE",
-            receipt_url: success.receipt_url,
-          },
-        });
-        break;
-      }
-      // ... handle other event types
-      default:
-        console.log(`Unhandled event type ${webhookEvent.type}`);
-    }
-  }
+    const details = getPaymentDetails(webhookEvent);
 
+    if (!details) {
+      return res.sendStatus(200);
+    }
+
+    await prisma.payments.updateMany({
+      where: {
+        transaction_id: details.paymentIntentId,
+      },
+      data: {
+        payment_status: details.status,
+        receipt_url: details.receipt_url,
+      },
+    });
+  }
   return res.sendStatus(200);
 };
 
