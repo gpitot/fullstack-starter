@@ -11,11 +11,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@prisma/client": "5.2.0",
     "cors": "^2.8.5",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "stripe": "^13.3.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
@@ -25,6 +29,7 @@
     "@types/express": "^4.17.17",
     "@types/express-serve-static-core": "^4.17.35",
     "@types/jest": "^29.5.2",
+    "@types/lodash": "^4.14.197",
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.2.5",
     "@types/supertest": "^2.0.12",

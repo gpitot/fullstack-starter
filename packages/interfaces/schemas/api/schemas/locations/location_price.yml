@@ -1,0 +1,19 @@
+title: "LocationPriceModel"
+type: object
+description: A location price
+required: [id, durationInMinutes, priceInCents, createdAt, name, locationId]
+properties:
+  id:
+    description: id of price
+    type: string
+  durationInMinutes:
+    type: number
+  priceInCents:
+    type: number
+  name:
+    type: string
+  description:
+    type: string
+  locationId:
+    type: string
+  

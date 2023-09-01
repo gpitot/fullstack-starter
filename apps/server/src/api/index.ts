@@ -1,16 +1,12 @@
 import express from "express";
-import { DemoModel } from "@packages/interfaces";
+import locations from "./locations";
+import tickets from "./tickets";
+import payments from "./payments";
 
 const router = express.Router();
 
-router.get<unknown, DemoModel, unknown, { firstname?: string }>(
-  "/demo",
-  (req, res) => {
-    const { firstname } = req.query;
-    res.json({
-      message: `👋 ${firstname ?? ""} 🌎🌍🌏`,
-    });
-  },
-);
+router.use("/locations", locations);
+router.use("/tickets", tickets);
+router.use("/payments", payments);
 
 export default router;

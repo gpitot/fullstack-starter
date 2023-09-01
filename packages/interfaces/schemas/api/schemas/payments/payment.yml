@@ -1,0 +1,9 @@
+title: "PaymentModel"
+type: object
+description: payment
+required: [status]
+properties:
+  status:
+    $ref: "../../api.yml#/components/schemas/PaymentStatus"
+  receiptUrl:
+    type: string

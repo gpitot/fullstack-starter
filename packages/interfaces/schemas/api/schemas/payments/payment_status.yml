@@ -1,0 +1,4 @@
+title: "PaymentStatusModel"
+type: object
+description: payment status
+enum: [PENDING, PAYMENT_FAILED, PAYMENT_COMPLETE, CANCELLED, REFUNDED]

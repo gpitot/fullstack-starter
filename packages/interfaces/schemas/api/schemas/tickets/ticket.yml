@@ -1,0 +1,11 @@
+title: "TicketModel"
+type: object
+description: A ticket
+allOf:
+  - type: object
+    required: [id]
+    properties:
+      id:
+        description: id of ticket
+        type: string
+  - $ref: "./ticket_create.yml"
