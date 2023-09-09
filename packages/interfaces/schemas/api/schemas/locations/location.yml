@@ -1,0 +1,16 @@
+title: "LocationModel"
+type: object
+description: A location
+required: [id, name, postcode, prices, rules]
+properties:
+  id:
+    description: id of location
+    type: string
+  name:
+    type: string
+  postcode:
+    type: string
+  prices:
+    type: array
+    items:
+      $ref: "../../api.yml#/components/schemas/LocationPriceModel"

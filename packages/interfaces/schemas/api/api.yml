@@ -8,29 +8,91 @@ servers:
       hostname:
         default: localhost:8080
 tags:
-  - name: demo
+  - name: locations
     description: |
-      The series of APIs for demo use
+      The series of APIs for location use
+  - name: tickets
+    description: |
+      The series of APIs for ticket use
+  - name: payments
+    description: |
+      The series of APIs for payments use
 
 paths:
-  /demo:
+  /locations:
     get:
-      operationId: GetDemo
-      tags: [demo]
-      summary: Get demo api
-      parameters:
-        - in: query
-          schema: { type: string }
-          name: firstname
-          required: false
-          description: The firstname of the user
+      operationId: GetLocations
+      tags: [locations]
+      summary: Get locations
       responses:
         "200":
           description: "successful response"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetDemoResponse"
+                $ref: "#/components/schemas/GetLocationsResponse"
+        "500":
+          $ref: "#/components/responses/ErrorInternal"
+
+  /tickets:
+    post:
+      operationId: PostTicket
+      tags: [tickets]
+      summary: Create ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTicketModel"
+      responses:
+        "200":
+          description: "successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostTicketResponse"
+        "500":
+          $ref: "#/components/responses/ErrorInternal"
+
+  /tickets/{ticketId}:
+    get:
+      operationId: GetTicket
+      tags: [tickets]
+      summary: Get ticket by id
+      parameters:
+        - in: path
+          name: ticketId
+          required: true
+          description: "The id of the ticket"
+          schema: { type: string }
+      responses:
+        "200":
+          description: "successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetTicketResponse"
+        "500":
+          $ref: "#/components/responses/ErrorInternal"
+
+  /payments/{paymentIntentId}:
+    get:
+      operationId: GetPayments
+      tags: [payments]
+      summary: Get payments
+      parameters:
+        - in: path
+          name: paymentIntentId
+          required: true
+          description: "The id of the paymentIntentId"
+          schema: { type: string }
+      responses:
+        "200":
+          description: "successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetPaymentResponse"
         "500":
           $ref: "#/components/responses/ErrorInternal"
 
@@ -50,11 +112,58 @@ components:
       required: true
 
   schemas:
-    DemoModel:
-      $ref: "schemas/demo/demo.yml"
+    LocationModel:
+      $ref: "schemas/locations/location.yml"
 
-    GetDemoResponse:
-      $ref: "#/components/schemas/DemoModel"
+    LocationPriceModel:
+      $ref: "schemas/locations/location_price.yml"
+
+    TicketModel:
+      $ref: "schemas/tickets/ticket.yml"
+
+    CreateTicketModel:
+      $ref: "schemas/tickets/ticket_create.yml"
+
+    PaymentIntentModel:
+      $ref: "schemas/payments/payment_intent.yml"
+
+    PaymentStatus:
+      $ref: "schemas/payments/payment_status.yml"
+
+    PaymentModel:
+      $ref: "schemas/payments/payment.yml"
+
+    GetLocationsResponse:
+      type: object
+      required: [locations]
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: "#/components/schemas/LocationModel"
+
+    GetTicketResponse:
+      type: object
+      required: [ticket]
+      properties:
+        ticket:
+          $ref: "#/components/schemas/TicketModel"
+
+    PostTicketResponse:
+      type: object
+      required: [ticket, payment]
+      properties:
+        ticket:
+          $ref: "#/components/schemas/TicketModel"
+        payment:
+          $ref: "#/components/schemas/PaymentIntentModel"
+
+    GetPaymentResponse:
+      type: object
+      required: [payment]
+      properties:
+        payment:
+          $ref: "#/components/schemas/PaymentModel"
 
   responses:
     # API Gateway does not support response definitions here for '200' responses

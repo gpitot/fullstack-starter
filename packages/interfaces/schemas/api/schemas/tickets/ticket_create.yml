@@ -1,0 +1,11 @@
+title: "TicketModel"
+type: object
+description: A ticket
+required: [location, registration, email]
+allOf:
+  - $ref: "./ticket_common.yml"
+  - type: object
+    required: [locationPriceId]
+    properties:
+      locationPriceId:
+        type: string

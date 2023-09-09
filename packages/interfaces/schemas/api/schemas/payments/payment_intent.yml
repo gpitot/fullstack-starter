@@ -1,0 +1,9 @@
+title: "PaymentIntentModel"
+type: object
+description: payment intent
+required: [clientSecret, amountInCents]
+properties:
+  clientSecret: 
+    type: string
+  amountInCents:
+    type: number

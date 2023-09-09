@@ -10,20 +10,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.1.2",
+    "@stripe/stripe-js": "^2.1.0",
+    "@tanstack/react-query": "^4.33.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
+    "@packages/interfaces": "workspace:*",
+    "@packages/tsconfig": "workspace:*",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.45.0",
-    "@packages/interfaces": "workspace:*",
+    "eslint-config-web": "workspace:*",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
-    "@packages/tsconfig": "workspace:*",
-    "eslint-config-web": "workspace:*",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
