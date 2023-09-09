@@ -18,14 +18,14 @@
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
-    "@packages/interfaces": "workspace:*",
-    "@packages/tsconfig": "workspace:*",
+    "@packages/interfaces": "*",
+    "@packages/tsconfig": "*",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.45.0",
-    "eslint-config-web": "workspace:*",
+    "eslint-config-web": "*",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",

@@ -7,42 +7,52 @@ FROM node:${NODE_VERSION}-slim as base
 LABEL fly_launch_runtime="NodeJS"
 
 # NodeJS app lives here
-WORKDIR .
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
 
 # Set production environment
 ENV NODE_ENV=production
 
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+# FROM base as build
 
 # Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install -y python-is-python3 pkg-config build-essential 
+# RUN apt-get update -qq && \
+#     apt-get install -y python-is-python3 pkg-config build-essential 
 
-ARG PNPM_VERSION=8.6.10
-RUN npm --global install pnpm@${PNPM_VERSION}
+# Specifically this:
+RUN apt-get update -qq && \
+    apt-get install -y openssl
+
+# ARG YARN_VERSION=1.22.19
+# RUN npm --global install yarn
 
 # Install node modules
-COPY pnpm-lock.yaml ./
-RUN pnpm fetch 
-RUN pnpm install --offline -r
+# COPY package.json ./
+# COPY yarn.lock ./
+RUN yarn
 
 # Copy application code
-COPY --link . .
+# COPY . .
 
 # Build application
-RUN pnpm run build
-
+RUN npx turbo run build --filter server
+RUN ls
 # Remove development dependencies
-RUN pnpm prune --production
+# RUN pnpm prune --production
 
 
 # Final stage for app image
-FROM base
+# FROM base
 
 # Copy built application
-COPY --from=build /app /app
+# COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
-CMD ["cd apps/server" "pnpm", "start" ]
+# CMD ["echo ls" ]
+CMD ["ls"]
+CMD ["yarn", "start"]
+

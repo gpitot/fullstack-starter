@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { LocationModel, LocationsService, TicketsService } from "@packages/interfaces";
+import { TicketsService } from "@packages/interfaces";
 
 import { useNavigate } from "react-router-dom";
 import * as API from "../api";
@@ -7,7 +6,7 @@ import * as API from "../api";
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const { data: locationsData, isLoading } = API.Locations.useGetLocations();
+  const { data: locationsData } = API.Locations.useGetLocations();
 
   const createTicket = async () => {
     const result = await TicketsService.postTicket({

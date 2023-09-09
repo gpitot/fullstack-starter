@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsup src",
+    "build": "npx prisma generate && tsup src",
     "lint": "eslint --ext .ts src/",
     "test": "jest",
     "typecheck": "tsc --noEmit"
@@ -20,11 +20,12 @@
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "stripe": "^13.3.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0"
   },
   "devDependencies": {
-    "@packages/interfaces": "workspace:*",
-    "@packages/tsconfig": "workspace:*",
+    "@packages/interfaces": "*",
+    "@packages/tsconfig": "*",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/express-serve-static-core": "^4.17.35",
@@ -33,13 +34,12 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.2.5",
     "@types/supertest": "^2.0.12",
-    "eslint-config-base": "workspace:*",
+    "eslint-config-base": "*",
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "prisma": "^5.2.0",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
-    "tsup": "^7.2.0",
     "typescript": "^5.0.2"
   }
 }

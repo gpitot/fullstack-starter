@@ -6,12 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "cd schemas/api && openapi -c fetch --output ../../generated -i api.yml --useOptions --useUnionTypes",
-    "build": "npm run compile"
+    "build": "yarn compile"
   },
   "author": "Guillaume Pitot",
   "license": "ISC",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.23.0",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "openapi-typescript-codegen": "^0.23.0"
   }
 }
